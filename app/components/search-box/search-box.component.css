@@ -1,0 +1,109 @@
+.search-box-container {
+   position: relative;
+   display: inline;
+   padding: 0px;
+}
+.search-box {
+   width: 92%;
+   outline: 0;
+   border: solid 1px #D0D0D0;
+   padding: 5px;
+   background: -webkit-gradient(linear, left top, left 25, from(rgba(255,255,255, 1)), color-stop(4%, rgba(240,240,240, 1)), to(rgba(255,255,255, 1)));
+   background: -moz-linear-gradient(top, rgba(255,255,255, 1), rgba(240,240,240, 1) 1px, rgba(255,255,255, 1) 25px);
+
+   -moz-box-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+   -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+   box-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+input.search-box:focus {
+   border-color: rgb(100,150,237);
+   -moz-box-shadow: 2px 2px 4px rgba(100,150,237,0.3);
+   -webkit-box-shadow: 2px 2px 4px rgba(100,150,237,0.3);
+   box-shadow:2px 2px 4px rgba(100,150,237,0.3);
+}
+.search-button-container {
+   display: inline-block;
+   width: 30px;
+   text-align: center;
+   vertical-align: top;
+}
+.search-button {
+   width: 30px;
+   height: 30px;
+   background-image: url("app/images/search_shadow_blue_30");
+}
+.search-button:hover {
+   cursor: pointer;
+}
+.search-button:active {
+   width: 30px;
+   height: 30px;
+   background-image: url("app/images/search_blue_30");
+}
+.search-table-container {
+   display: inline-block;
+   padding: 0px;
+   width: 100%;
+   text-align: right;
+   background-color: transparent;
+}
+table.search-table {
+   width: 100%;
+   display: inline-block;
+   border-collapse: collapse;
+}
+table.search-table td {
+   vertical-align: top;
+   text-align: left;
+   padding-left: 10px;
+}
+
+.search-left-spacer {
+   display: block;
+   width: 220px;
+}
+
+table.search-table td.search-box-cell {
+   position: relative;
+   width: 100%;
+}
+td.auto-complete-cell {
+   padding: 0px;
+}
+.auto-complete {
+   position: absolute;
+   z-index: 500;
+   left: 0px;
+   width: 100%;
+   list-style-type: none;
+   margin: 0px;
+   padding: 0px;
+   background-color: #FFF;
+   -moz-box-shadow: 0px 0px 8px rgba(180,180,180,0.5);
+   -webkit-box-shadow: 0px 0px 8px rgba(180,180,180,0.5);
+   box-shadow: 0px 0px 8px rgba(180,180,180,0.5);
+}
+.auto-complete li {
+   padding: 5px;
+   background-color: #FFF;
+   border-top: 1px dotted #CCC;
+   text-align: left;
+}
+
+.auto-complete li:hover {
+   cursor: pointer;
+   background-color: #F3F3F3;
+}
+.auto-complete li:nth-child(1) {
+   border-top: 1px solid #CCC;
+}
+.collapsed {
+   display: none;
+}
+
+@media screen and (max-width: 800px) {
+   .search-left-spacer {
+      width: 110px;
+   }
+}

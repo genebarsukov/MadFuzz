@@ -1,0 +1,36 @@
+<div class="search-table-container">
+   <table class="search-table">
+      <tr>
+         <td class="search-left-spacer">
+         </td>
+         <td>
+            <div class="search-button-container">
+               <div class="search-button"
+                    (click)="getSearchResults($event, null)"></div>
+            </div>
+         </td>
+         <td class="search-box-cell">
+            <div class="search-box-container">
+               <input class="search-box" type="text" name="search-box" placeholder="{{text_hint}}"
+                      [(ngModel)]="search_string"
+                      (ngModelChange)="onChange()"
+                      (click)="onSearchBoxClick($event)"
+                      (focusout)="collapseAutocompleteOnFocusOut()"
+                      (keypress)="onSearchKeyPress($event)">
+            </div>
+
+         </td>
+      </tr>
+      <tr>
+         <td colspan="3" class="auto-complete-cell">
+            <ul class="auto-complete"
+                [class.collapsed]="!auto_complete_showing">
+               <li class="auto-complete-item"
+                   *ngFor="let item of auto_complete_items"
+                   (click)="autoCompleteSearch($event, item)"> {{ item.title }} </li>
+            </ul>
+         </td>
+      </tr>
+   </table>
+</div>
+

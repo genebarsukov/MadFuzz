@@ -1,0 +1,69 @@
+.flower {
+   position: relative;
+   width: 42px;
+   height: 30px;
+}
+#up-vote-button {
+   background-image: url("app/images/up_vote_30_bl.png");
+}
+#down-vote-button {
+   background-image: url("app/images/down_vote_30_bl.png");
+}
+
+#up-vote-button:hover {
+   background-image: url("app/images/up_vote_30_hover.png");
+}
+#up-vote-button:active,
+#up-vote-button.pressed {
+   background-image: url("app/images/up_vote_30.png");
+}
+
+#down-vote-button:hover {
+   background-image: url("app/images/down_vote_30_hover.png");
+}
+#down-vote-button:active,
+#down-vote-button.pressed {
+   background-image: url("app/images/down_vote_30.png");
+}
+
+.petal {
+   position: absolute;
+   display: inline-block;
+   vertical-align: middle;
+   width: 50px;
+   height: 50px;
+   top: 0;
+   left: 0;
+   background-color: #0099FF;
+   border: 1px solid #3399FF;
+   border-radius: 3px;
+   -moz-box-shadow: 2px 2px 4px rgba(20,60,100,0.8);
+   -webkit-box-shadow: 2px 2px 4px rgba(20,60,100,0.8);
+   box-shadow: 2px 2px 4px rgba(20,60,100,0.8);
+}
+.petal:hover {
+   -moz-box-shadow: 2px 2px 4px rgba(20,60,100,0.8);
+   -webkit-box-shadow: 2px 2px 4px rgba(20,60,100,0.8);
+   box-shadow: 2px 2px 4px rgba(20,60,100,0.8);
+}
+.hidden {
+   display: none;
+}
+.text {
+   display: inline-block;
+   text-align: center;
+   vertical-align: middle;
+   width: 100%;
+   height: 50px;
+   line-height: 50px;
+   font-family: Arial;
+   font-size: 8pt;
+   color: #FFF;
+}
+.petal.selected {
+   background-color: #00CCFF;
+   border: 1px solid #0088FF;
+   -moz-box-shadow: 2px 2px 4px rgba(50,50,50,0.8);
+   -webkit-box-shadow: 2px 2px 4px rgba(50,50,50,0.8);
+   box-shadow: 2px 2px 4px rgba(50,50,50,0.8);
+}

@@ -1,0 +1,41 @@
+<div class="flower"
+     [attr.id]="id"
+     [class.pressed]="story.last_rating_action==action"
+     (click)="toggleState()">
+
+   <div class="petal petal_1"
+        [class.selected]="selected_text==text[0]"
+        [class.hidden]="hidden"
+        [@petal_1_state]="up_states.petal_1_state"
+        (@petal_1_state.start)="animationStart($event)"
+        (@petal_1_state.done)="animationDone($event)"
+        [@petal_7_state]="down_states.petal_7_state"
+        (@petal_7_state.start)="animationStart($event)"
+        (@petal_7_state.done)="animationDone($event)"
+        (click)="updateSelectedText(text[0])">
+      <div class="text">
+         {{ text[0] }}
+      </div>
+   </div>
+   <div class="petal petal_2"
+        [class.selected]="selected_text==text[1]"
+        [class.hidden]="hidden"
+        [@petal_2_state]="up_states.petal_2_state"
+        [@petal_8_state]="down_states.petal_8_state"
+        (click)="updateSelectedText(text[1])">
+      <div class="text">
+         {{ text[1] }}
+      </div>
+   </div>
+   <div class="petal petal_3"
+        [class.selected]="selected_text==text[2]"
+        [class.hidden]="hidden"
+        [@petal_3_state]="up_states.petal_3_state"
+        [@petal_9_state]="down_states.petal_9_state"
+        (click)="updateSelectedText(text[2])">
+      <div class="text">
+         {{ text[2] }}
+      </div>
+   </div>
+
+</div>
