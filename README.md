@@ -1,5 +1,5 @@
-# MadFuzz
-<a href="http://www.madfuzz.com" target="_blank"> madfuzz.com </a>
+# MadFuzz web app
+http://www.madfuzz.com
 
 ## Aggregates recent news headlines and allows users to rate them
 
