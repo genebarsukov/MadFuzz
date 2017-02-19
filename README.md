@@ -1,4 +1,8 @@
 # MadFuzz
+<a href="http://www.madfuzz.com" target="_blank">
+www.madfuzz.com
+</a>
+
 ## Aggregates recent news headlines and allows users to rate them
 
 ### This project consists of 3 loosely defined parts:h
