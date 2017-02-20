@@ -3,6 +3,7 @@ import {Story} from "../../models/story";
 
 @Component({
     selector: 'flower-petal',
+    // These paths are used when in dev mode and not using pre-compiled typescript
     //templateUrl: 'app/components/flower-petal/flower-petal.component.html',
     //styleUrls: ['app/components/flower-petal/flower-petal.component.css'],
     templateUrl: './flower-petal.component.html',
@@ -202,6 +203,11 @@ import {Story} from "../../models/story";
     ]
 })
 
+/**
+ * Special button component that is used to handle story up-voting and down-voting actions
+ * Mainly used to perform a fancy "flower petal" animation
+ * Stores the reason why a user rated a story a certain way and lets the story be updated with it for that user
+ */
 export class FlowerPetalComponent {
     @Input() id: string;
     @Input() action: string;

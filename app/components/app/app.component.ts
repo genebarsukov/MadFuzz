@@ -7,9 +7,14 @@ import {Story} from "../../models/story";
   selector: 'app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
+  // These paths are used when in dev mode and not using pre-compiled typescript
   //templateUrl: 'app/components/app/app.component.html',
   //styleUrls: ['app/components/app/app.component.css']
 })
+
+/**
+ * Main app component that holds all other components
+ */
 export class AppComponent {
   name = 'MadFuzz';
   user_id_changed_subscription: Subscription;
