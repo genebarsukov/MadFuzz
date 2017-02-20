@@ -8,24 +8,9 @@ import {Subscription} from 'rxjs/Subscription';
     selector: 'story-list',
     templateUrl: './story-list.component.html',
     styleUrls: ['./story-list.component.css'],
+    // These paths are used when in dev mode and not using pre-compiled typescript
     //templateUrl: 'app/components/story-list/story-list.component.html',
     //styleUrls: ['app/components/story-list/story-list.component.css'],
-    animations: [
-        trigger('story_state', [
-            state('expanded', style({
-                height: '100px'
-            })),
-            state('collapsed',   style({
-                height: '0px',
-            })),
-            transition('collapsed => expanded', [
-                animate(500, style({height: '100px' }))
-            ]),
-            transition('expanded => collapsed', [
-                animate(500, style({ height: '0px'}))
-            ]),
-        ]),
-    ]
 })
 
 export class StoryListComponent implements OnDestroy {
