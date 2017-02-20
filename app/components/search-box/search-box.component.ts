@@ -20,13 +20,13 @@ import {Subscription} from 'rxjs/Subscription';
  */
 export class SearchBoxComponent {
 
-    auto_complete_subscription: Subscription;
-    search_subscription: Subscription;
+    auto_complete_subscription: Subscription;   /** Gets a small data sets of story titles and ids: to be quick */
+    search_subscription: Subscription;          /** Used when the user runs the actual seatch: gets everything */
     text_hint: string = 'Search For Stories';
     search_string: string = '';
     auto_complete_showing: boolean = false;
-    auto_complete_items: Story[] = []
-    search_results: Story[] = [];
+    auto_complete_items: Story[] = []   /** These story objects only have an id and title, only used to make the list*/
+    search_results: Story[] = [];       /** These story objects contain the full story data used to render in the UI */
     @Input() user_id: number = 0;
 
 
