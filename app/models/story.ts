@@ -17,7 +17,7 @@ export class Story {
     frame_url: string;
     vote_text: string;
     rand_mod: number;
-    up_vote_component: any;
-    down_vote_component: any;
+    up_vote_component: any;     // set in html on story click references the up-vote button for the current story
+    down_vote_component: any;   // set in html on story click references the down-vote button for the current story
     summary_lines: string[];
 }

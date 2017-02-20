@@ -1,24 +1,6 @@
 <div class="story-list-container">
-      <search-box [user_id]="user_id">
-      </search-box>
-   <div class="expanded-story-container" [class.collapsed]="!selected_story.details_expanded">
-      <table class="expanded-story">
-         <tr>
-            <td class="expanded-story-header">
-               <div class="close-story-details-button-container">
-                  <div class="close-story-details-button"  (click)="closeStoryDetails($event, selected_story)"></div>
-               </div>
-            </td>
-         </tr>
-         <tr class="story-frame-row">
-            <td class="story-frame-cell">
-               <div class="story-frame-wrapper">
+   <search-box [user_id]="user_id"></search-box>
 
-               </div>
-            </td>
-         </tr>
-      </table>
-   </div>
    <ul class="story-list" *ngIf="stories">
       <div class="shadow-overlay"></div>
       <div *ngIf="stories.length == 0"> Loading stories...</div>
@@ -47,9 +29,6 @@
                      {{story.title}}
                   </div>
                </td>
-               <td class="close-story-button-container">
-                  <div class="close-story-button"  (click)="removeStory($event, story)"></div>
-               </td>
             </tr>
 
             <tr class="story-body"
@@ -68,7 +47,7 @@
                                 [selected_text]="story.vote_text"
                                 [text]="['Like','Accurate','Interested']"
                                 (click)="updateStoryRating($event, story, 'up_vote', up_vote_button.selected_text);
-                                         up_vote_component=up_vote_button;
+                                         story.up_vote_component=up_vote_button;
                                          down_vote_button.close()">
                            </flower-petal>
                         </td>
@@ -90,7 +69,7 @@
                                 [selected_text]="story.vote_text"
                                 [text]="['Dislike','Misleading','Boring']"
                                 (click)="updateStoryRating($event, story, 'down_vote', down_vote_button.selected_text);
-                                         down_vote_component=down_vote_button;
+                                         story.down_vote_component=down_vote_button;
                                          up_vote_button.close()">
                            </flower-petal>
                         </td>
@@ -106,9 +85,10 @@
                   </p>
                   <div class="snippet-footer">
                      <div class="expand-story-button-container">
+
                         <a [attr.href]="story.url" target="_blank">
-                           <div class="expand-story-button"
-                                (click)="openStoryDetails($event, story)">
+
+                           <div class="expand-story-button">
                               <span class="source-name">
                                  Source: {{ story.source }}
                               </span>
