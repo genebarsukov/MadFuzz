@@ -1,4 +1,6 @@
-# MadFuzz
+# MadFuzz web app
+http://www.madfuzz.com
+
 ## Aggregates recent news headlines and allows users to rate them
 
 ### This project consists of 3 loosely defined parts:h
