@@ -3,9 +3,9 @@ http://www.madfuzz.com
 
 ## Aggregates recent news headlines and allows users to rate them
 
-### This project consists of 3 loosely defined parts:h
+### The parts of this web project
  1. An Angular 2 front-end
- 2. A PHP back-end
+ 2. A PHP back-end (Because PHP is quick and this started as an Angular test bed so emphasis was put on the front end)
  3. A Python scraping process
 
 The front end is written in Typescript.
