@@ -13,37 +13,41 @@ import {Subscription} from 'rxjs/Subscription';
     //styleUrls: ['app/components/story-list/story-list.component.css'],
 })
 
+/**
+ * Component that holds all of the stories and represents the main story list on the page
+ */
 export class StoryListComponent implements OnDestroy {
 
-    story_subscription: Subscription;
-    user_id_subscription: Subscription;
-    stories_changed_subscription: Subscription;
-    update_story_rating_subscription: Subscription;
-    user_id: number;
-    stories: Story[] = [];
-    selected_story: Story = new Story();
+    user_id_subscription: Subscription;             /** Used for retrieving this user's id from the back-end */
+    story_subscription: Subscription;               /** Used for retrieving the main story list on load  */
+    stories_changed_subscription: Subscription;     /** Updates story list when new stories are loaded from searching */
+    update_story_rating_subscription: Subscription; /** Updates server side data when a story is rated */
+    user_id: number;                                /** Current user's id (ip-based, not ideal but no login required)*/
+    stories: Story[] = [];                          /** Current story list */
+    selected_story: Story = new Story();            /** The currently selected story */
 
     /**
      * Injecting our story data service into this component
      */
     constructor(private story_data_service: StoryDataService, private sanitizer: DomSanitizer) {
+        // Subscribe to get the current user's id from the back end
         this.user_id_subscription = this.story_data_service.userIdChanged$.subscribe(
             user_id => this.getTopStories(user_id)
         );
-
+        // Subscribe to be updated when new stories are loaded via seatching
         this.stories_changed_subscription = this.story_data_service.storiesChanged$.subscribe(
             updated_stories => this.receiveStories(updated_stories)
         );
     }
 
     /**
-     * Get the top stories list
+     * Get the top stories list after we have gotten the current user's id from the back end
      * @param user_id
      */
     getTopStories(user_id: number) {
         this.user_id = user_id
 
-        // get stories subscription
+        // get stories after we have a user id for the current user
         this.story_subscription = this.story_data_service.getStories(user_id).subscribe(
             retrieved_stories => this.receiveStories(retrieved_stories)
         );
@@ -64,7 +68,7 @@ export class StoryListComponent implements OnDestroy {
             story.up_votes = parseInt(story.up_votes);
             story.down_votes = parseInt(story.down_votes);
             story.url = this.sanitizeUrl(story.url);
-            story.frame_url = this.sanitizeUrl('');
+            story.frame_url = '';
             story.summary_lines = story.snippet.split('|');
         }
 
@@ -114,24 +118,32 @@ export class StoryListComponent implements OnDestroy {
     updateStoryRating(event: Event, story: Story, rating_action: string, selected_text: string) {
         story.vote_text = selected_text;
 
-        if (story.last_rating_action == null) {     // fresh story rating for user
+        if (story.last_rating_action == null) {                 // fresh story rating for the user
             this.rateStory(story, rating_action, 1, 0);
         }
-        else {                                      // change existing story rating if user has previously rated
-            if (story.last_rating_action != rating_action) {
-                this.rateStory(story, rating_action, 1, 1);
-            }
+        else if (story.last_rating_action != rating_action) {   // change existing story rating if user has rated before
+            this.rateStory(story, rating_action, 1, 1);
         }
         // update story rating rating on the backend, and update the story with new values when data is returned
+        // even when the rating does not get changed, the reason for voting might, so we update in all cases
         this.update_story_rating_subscription = this.story_data_service
             .updateStoryRating(this.user_id, story)
             .subscribe(
                 // update ui with updated story rating and score
-                updated => {story.position = updated.story.position,
-                            story.rating = updated.story.rating}
+                updated => this.updateStoryRatingWithNewData(story, updated)
             );
+    }
 
-        event.stopPropagation();
+    /**
+     * Callback executed after story is updated and date is returned from the back end
+     * @param story
+     * @param updated
+     */
+    updateStoryRatingWithNewData(story: Story, updated: {story: Story}) {
+        if (updated.story) {
+            story.position = updated.story.position;
+            story.rating = updated.story.rating;
+        }
     }
 
     /**
@@ -141,7 +153,7 @@ export class StoryListComponent implements OnDestroy {
      * @param increment: Increment the correct stat
      * @param decrement: We only decrement stories for which the rating is getting switched. New sotries do not use this
      */
-    rateStory(story, rating_action, increment, decrement) {
+    rateStory(story: Story, rating_action: string, increment: number, decrement: number) {
         if (rating_action == 'up_vote') {
             story.up_votes += increment;
             story.down_votes -= decrement;

@@ -7,10 +7,17 @@ import {Subscription} from 'rxjs/Subscription';
     selector: 'search-box',
     templateUrl: './search-box.component.html',
     styleUrls: ['./search-box.component.css']
+    // These paths are used when in dev mode and not using pre-compiled typescript
     //templateUrl: 'app/components/search-box/search-box.component.html',
     //styleUrls: ['app/components/search-box/search-box.component.css']
 })
 
+/**
+ * Search box component
+ * Resides at top of page
+ * Handles auto-complete
+ * Handles updating the story list with new stories
+ */
 export class SearchBoxComponent {
 
     auto_complete_subscription: Subscription;
@@ -111,7 +118,7 @@ export class SearchBoxComponent {
                 search_results => this.processSearchResults(search_results)
             )
         } else {
-            // Gets search results based on ids because we have exvact matches
+            // Gets search results based on ids because we have exact matches
             this.search_subscription = this.story_data_service.getStories(this.user_id).subscribe(
                 search_results => this.processSearchResults(search_results)
             )
