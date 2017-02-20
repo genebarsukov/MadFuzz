@@ -209,14 +209,15 @@ import {Story} from "../../models/story";
  * Stores the reason why a user rated a story a certain way and lets the story be updated with it for that user
  */
 export class FlowerPetalComponent {
-    @Input() id: string;
-    @Input() action: string;
-    @Input() story: Story;
-    @Input() type: string;
-    @Input() text: any[] = [];
-    @Input() selected_text: string = '';
+    /** All properties with the @Input decorator are assigned by the parent component in the html */
+    @Input() id: string;                    /** Identifies the button element */
+    @Input() action: string;                /** Used to update the current story being updated on */
+    @Input() story: Story;                  /** The current story that will bw updated with the button click */
+    @Input() type: string;                  /** What the button does: used to choose the correct animation */
+    @Input() text: any[] = [];              /** The text to display on the 'petals' of the button */
+    @Input() selected_text: string = '';    /** Corresponds to which 'petal' was selected by the user */
     hidden: boolean = true;
-    up_states: any = {
+    up_states: any = {                      /** These are used for state changes when animating the button */
         petal_1_state: 'inactive',
         petal_2_state: 'inactive',
         petal_3_state: 'inactive'
