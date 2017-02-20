@@ -15,6 +15,20 @@ import {Subscription} from 'rxjs/Subscription';
 
 /**
  * Component that holds all of the stories and represents the main story list on the page
+ *
+ * Upon loading the page, a user's IP is used to get his user id or make a new one for him
+ *      The main purpose of this is to prevent spam ratings from the same user.
+ *      This presents an obvious problem for users behind a VPN etc.
+ *      The benefit is that the page does not require the user to log in.
+ *      This lets the user browse the page and set his specific ratings for stories without scaring him off
+ *
+ * After the user id is retrieved, a list of top rated stories is retrieved along with their ratings by the current user
+ *
+ * The stories are gotten and stored in advance via a scheduled web scraper process
+ *
+ * They are ordered by positional score.
+ * The positional score is calculated by weighing the story's age, its user rating, and a random factor.
+ * The story's age is a major factor in the score. Newest stories usually show up on top.
  */
 export class StoryListComponent implements OnDestroy {
 
